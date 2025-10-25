@@ -18,8 +18,8 @@ Em versões futuras:
 - Aplicação de **POO** para melhorar a organização do código e reaproveitamento
 - Possível integração com banco de dados
 
-<br><br>
+<br>
 
-## 🛠️ Tecnologias
+<h3>🛠️ Tecnologias</h3>
 
 ![HTML](https://img.shields.io/badge/PYTHON-000?style=for-the-badge&logo=html5&logoColor=30A3DC)
