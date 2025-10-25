@@ -20,7 +20,7 @@ Em versões futuras:
 
 <br>
 
-##🛠️ Tecnologias
+## 🛠️ Tecnologias
 
 ![HTML](https://img.shields.io/badge/PYTHON-000?style=for-the-badge&logo=html5&logoColor=30A3DC)
 <br>
