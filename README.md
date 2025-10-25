@@ -1,4 +1,4 @@
-# Sistema Bancário em Python
+# 💰 Sistema Bancário em Python
 
 Este projeto é um **sistema bancário simples** desenvolvido em Python, como parte do desafio proposto pelo **Bootcamp Backend Python da DIO**. O objetivo é criar funcionalidades básicas de um banco, utilizando lógica de programação e, futuramente, aplicando conceitos de **Programação Orientada a Objetos (POO)**.
 
@@ -18,7 +18,7 @@ Em versões futuras:
 - Aplicação de **POO** para melhorar a organização do código e reaproveitamento
 - Possível integração com banco de dados
 
----
+<br><br>
 
 ## 🛠️ Tecnologias
 
