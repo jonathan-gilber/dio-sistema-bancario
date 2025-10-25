@@ -8,6 +8,8 @@
 # os valores devem ser exibidos utilizando o formato float R$: xxx.xx
 
 import os
+from rich import print
+from datetime import datetime
 
 
 def limpar_tela():
@@ -39,54 +41,64 @@ while True:
         limpar_tela()
         while True:
             try:
-                valor = float(input("Digite o valor a ser depositado: "))
+                valor = float(input("Digite o valor a ser depositado: R$ "))
                 if valor > 0:
                     saldo += valor
-                    extrato.append(valor)
+                    hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+                    extrato.append(f"[dim]{hora}[/dim] [green]+ R$ {valor:.2f}[/green]")
+                    print(f"\nDepósito concluído! Saldo atual: R$ {saldo:.2f}")
+                    input("Pressione Enter para continuar...")
                     break
                 else:
-                    input("Valor inválido, pressione enter para continuar...")
+                    input("Valor inválido, pressione Enter para continuar...")
             except ValueError:
-                input("O valor deve ser numérico!")
+                input("O valor deve ser numérico! Pressione Enter para continuar...")
 
     elif opcao == "S":
         limpar_tela()
         while True:
             try:
-                valor = float(input("Digite o valor a ser sacado:"))
+                valor = float(input("Digite o valor a ser sacado: R$ "))
                 if valor > 0:
                     if numero_saques < LIMITE_SAQUES:
                         if saldo >= valor:
-                            saldo -= valor
-                            numero_saques += 1
-                            extrato.append(valor)
-                            break
+                            if valor <= limite:
+                                saldo -= valor
+                                numero_saques += 1
+                                hora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+                                extrato.append(f"[dim]{hora}[/dim] [red]- R$ {valor:.2f}[/red]")
+                                print(f"\nSaque concluído! Saldo atual: R$ {saldo:.2f}")
+                                input("Pressione Enter para continuar...")
+                                break
+                            else:
+                                input("Limite máximo por saque é R$ 500. Pressione Enter para continuar...")
                         else:
-                            input(
-                                "Saldo insuficiente para o saque, pressione enter para continuar..."
-                            )
+                            input("Saldo insuficiente para o saque. Pressione Enter para continuar...")
                     else:
-                        print(
-                            "Valor máximo de saques diários atingido, tente novamente mais tarde!"
-                        )
+                        print("Limite diário de saques atingido! Tente novamente amanhã.")
                         input()
                         break
                 else:
-                    input("Valor inválido, pressione enter para continuar...")
+                    input("Valor inválido, pressione Enter para continuar...")
             except ValueError:
-                input("O valor deve ser numérico!")
+                input("O valor deve ser numérico! Pressione Enter para continuar...")
 
     elif opcao == "E":
         limpar_tela()
-        print(f"Saldo em conta: {saldo:.2f}")
-        print(f"Extrato: {extrato}")
-        input("\nPressione enter para voltar ao menu...")
+        print("\n[bold white]EXTRATO BANCÁRIO[/bold white]\n")
+        if extrato:
+            for item in extrato:
+                print(item)
+        else:
+            print("[dim]Nenhuma movimentação registrada.[/dim]")
+        print(f"\n[bold white]Saldo em conta: R$ [/bold white]{saldo:.2f}")
+        input("\nPressione Enter para voltar ao menu...")
 
     elif opcao == "Q":
         limpar_tela()
-        print("saindo do sistema...")
-        break
+        if input("Deseja realmente sair? (S/N): ").upper() == "S":
+            break
 
     else:
         limpar_tela()
-        input("Opção inválida, pressione enter para continuar...")
+        input("Opção inválida, pressione Enter para continuar...")
